@@ -14,10 +14,8 @@ import 'package:flutter_application_spajam2022/take_picture1.dart';
 
 import 'home.dart'; // Uint8List
 
-import 'camera.dart';
-
 void main() {
-  // amain();
+  amain();
   runApp(MyApp());
 }
 
