@@ -17,7 +17,12 @@ class PictureReady1 extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: (){
-            amain();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TakePicture1(),
+              // fullscreenDialog: true,
+              ),
+            );
           },
           child: const Text('写真撮るよー'),
         ),

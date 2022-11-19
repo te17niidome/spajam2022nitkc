@@ -7,27 +7,31 @@ import 'package:flutter_application_spajam2022/picture_ready_2.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
-var image1;
+// var image1;
 var image2;
 var player;
+
+var image1;
+var cameras;
+var camera;
 
 Future<void> amain() async {
   // main 関数内で非同期処理を呼び出すための設定
   WidgetsFlutterBinding.ensureInitialized();
   // デバイスで使用可能なカメラのリストを取得
-  final cameras = await availableCameras();
+  cameras = await availableCameras();
   // 利用可能なカメラのリストから特定のカメラを取得
-  final firstCamera = cameras.first;
-  runApp(TakePicture1(camera: firstCamera));
+  camera = cameras.first;
+  // runApp(TakePicture2(camera: firstCamera2));
 }
 
 class TakePicture1 extends StatelessWidget {
-  const TakePicture1({
-    Key? key,
-    required this.camera,
-  }) : super(key: key);
+  // const TakePicture1({
+  //   Key? key,
+  //   required this.camera,
+  // }) : super(key: key);
 
-  final CameraDescription camera;
+  // final CameraDescription camera;
 
   @override
   Widget build(BuildContext context) {

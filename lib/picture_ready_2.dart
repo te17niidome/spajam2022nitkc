@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_spajam2022/judge.dart';
 // import 'take_picture2.dart';
 // import 'package:flutter_application_spajam2022/take_picture1.dart';
 import 'package:flutter_application_spajam2022/take_picture2.dart';
@@ -16,7 +17,12 @@ class PictureReady2 extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: (){
-            amain2();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TakePicture2(),
+              fullscreenDialog: true,
+              ),
+            );
           },
           child: const Text('写真撮るよー'),
         ),
