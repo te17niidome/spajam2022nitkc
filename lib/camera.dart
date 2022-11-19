@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
-Future<void> main() async {
+Future<void> amain() async {
   // main 関数内で非同期処理を呼び出すための設定
   WidgetsFlutterBinding.ensureInitialized();
   // デバイスで使用可能なカメラのリストを取得
