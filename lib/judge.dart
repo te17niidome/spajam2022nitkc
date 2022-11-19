@@ -22,23 +22,23 @@ class Judge extends StatelessWidget {
   Widget build(BuildContext context) {
     judgement();
     return Scaffold(
+      backgroundColor: Color(0xffefedd7),
       appBar: AppBar(
-        title: const Text('勝敗判定するよー'),
+        title: const Text('ホーム画面'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(width: 160, child: Image.file(File(image1.path))),
-                Text(' VS ', style: TextStyle(fontSize: 20)),
-                SizedBox(width: 160, child: Image.file(File(image2.path))),
-              ],
-            ),
-            SizedBox(height: 100),
-            ElevatedButton(
+      body: Container(
+        width: 1000,
+        height: 2500,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('images/判定.png'),
+          // fit: BoxFit.cover,
+        )),
+        child: Center(
+          child: SizedBox(
+            width: 220,
+            height: 250,
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -48,12 +48,14 @@ class Judge extends StatelessWidget {
                   ),
                 );
               },
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: const Text('結果を見る', style: TextStyle(fontSize: 30)),
+              child: const Text(''),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.transparent,
+                elevation: 0,
+                onPrimary: Colors.blue,
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

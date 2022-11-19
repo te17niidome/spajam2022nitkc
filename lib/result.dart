@@ -48,8 +48,9 @@ class Result extends StatelessWidget {
   Widget build(BuildContext context) {
     judgement();
     return Scaffold(
+      backgroundColor: Color(0xffefedd7),
       appBar: AppBar(
-        title: const Text('Judgement Result'),
+        title: const Text('ホーム画面'),
       ),
       body: Center(
         child: Column(
