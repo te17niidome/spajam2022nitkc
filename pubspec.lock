@@ -21,22 +21,14 @@ packages:
       name: camera
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "0.9.8+1"
-=======
     version: "0.10.0+4"
->>>>>>> niidome_from_kazunoko
   camera_android:
     dependency: transitive
     description:
       name: camera_android
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "0.9.8+3"
-=======
     version: "0.10.0+4"
->>>>>>> niidome_from_kazunoko
   camera_avfoundation:
     dependency: transitive
     description:
@@ -57,11 +49,7 @@ packages:
       name: camera_web
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
-    version: "0.2.1+6"
-=======
     version: "0.3.0+1"
->>>>>>> niidome_from_kazunoko
   characters:
     dependency: transitive
     description:
@@ -85,16 +73,6 @@ packages:
     version: "1.16.0"
   cross_file:
     dependency: transitive
-<<<<<<< HEAD
-    description:
-      name: cross_file
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.3+2"
-  cupertino_icons:
-    dependency: "direct main"
-=======
->>>>>>> niidome_from_kazunoko
     description:
       name: cross_file
       url: "https://pub.dartlang.org"
@@ -199,7 +177,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
-<<<<<<< HEAD
   path_provider:
     dependency: "direct main"
     description:
@@ -256,8 +233,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
-=======
->>>>>>> niidome_from_kazunoko
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -265,7 +240,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
-<<<<<<< HEAD
   process:
     dependency: transitive
     description:
@@ -273,8 +247,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-=======
->>>>>>> niidome_from_kazunoko
   quiver:
     dependency: transitive
     description:
