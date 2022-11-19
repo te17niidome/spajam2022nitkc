@@ -33,18 +33,34 @@ class Result extends StatelessWidget {
               child: Text('判定', style: TextStyle(fontSize: 50)),
             ),
             SizedBox(width: 360, child: Image.file(File(image_win.path))),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Home(),
-                    fullscreenDialog: true,
-                  ),
-                );
-              },
-              child: const Text('ホームに戻る'),
-            ),
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
+                  child: const Text('ホームに戻る'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(),
+                        fullscreenDialog: true,
+                      ),
+                    );
+                  },
+                  child: const Text('共有'),
+                ),
+              ],
+            )
           ],
         ),
       ),
