@@ -33,7 +33,8 @@ dependencies:
     sdk: flutter
 
   camera: ^0.9.4+19
-  path_provider: ^2.0.9
+  share_extend: ^2.0.0
+  path_provider: ^2.0.1
   path: ^1.8.0
 
   # ↓これを追加
