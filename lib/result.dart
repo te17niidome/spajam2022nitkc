@@ -56,37 +56,41 @@ class Result extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text('判定', style: TextStyle(fontSize: 50)),
+              child: Text('勝者', style: TextStyle(fontSize: 50)),
             ),
             SizedBox(width: 360, child: Image.file(File(image_win.path))),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                        fullscreenDialog: true,
-                      ),
-                    );
-                  },
-                  child: const Text('ホームに戻る'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    shareImageAndText();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                        fullscreenDialog: true,
-                      ),
-                    );
-                  },
-                  child: const Text('共有'),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Home(),
+                          fullscreenDialog: true,
+                        ),
+                      );
+                    },
+                    child: const Text('ホームに戻る', style: TextStyle(fontSize: 20)),
+                  ),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      shareImageAndText();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Home(),
+                          fullscreenDialog: true,
+                        ),
+                      );
+                    },
+                    child: const Text('共有', style: TextStyle(fontSize: 20)),
+                  ),
+                ],
+              ),
             )
           ],
         ),
