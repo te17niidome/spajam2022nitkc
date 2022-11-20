@@ -26,16 +26,18 @@ class Judge extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ホーム画面'),
       ),
-      body: Container(
-        width: 1000,
-        height: 2500,
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage('images/判定.png'),
-          // fit: BoxFit.cover,
-        )),
-        child: Center(
-          child: SizedBox(
+      body: Column(
+        children: [
+          Container(
+            width: 1000,
+            height: 2500,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('images/判定.png'),
+              // fit: BoxFit.cover,
+            )),
+          ),
+          SizedBox(
             width: 220,
             height: 250,
             child: ElevatedButton(
@@ -56,7 +58,13 @@ class Judge extends StatelessWidget {
               ),
             ),
           ),
-        ),
+          Container(
+            child: Image(
+              image: AssetImage('images/Videotogif.gif'),
+              fit: BoxFit.cover,
+            ),
+          )
+        ],
       ),
     );
   }

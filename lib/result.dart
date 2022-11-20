@@ -57,7 +57,8 @@ class Result extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text('勝者', style: TextStyle(fontSize: 50)),
+              child: Text('勝者',
+                  style: TextStyle(fontSize: 50, fontFamily: 'RocknRollOne')),
             ),
             SizedBox(width: 360, child: Image.file(File(image_win.path))),
             Padding(
