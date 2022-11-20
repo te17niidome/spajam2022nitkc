@@ -15,6 +15,9 @@ var image1;
 var cameras;
 var camera;
 
+var image_win;
+var image_lose;
+
 Future<void> amain() async {
   // main 関数内で非同期処理を呼び出すための設定
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +26,11 @@ Future<void> amain() async {
   // 利用可能なカメラのリストから特定のカメラを取得
   camera = cameras.first;
   // runApp(TakePicture2(camera: firstCamera2));
+}
+
+Future<void> savePicture() async {
+  final Uint8List buffer = await image_lose.readAsBytes();
+  await ImageGallerySaver.saveImage(buffer, name: image_lose.name);
 }
 
 class TakePicture1 extends StatelessWidget {
