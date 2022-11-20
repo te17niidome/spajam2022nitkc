@@ -25,6 +25,7 @@ class Result extends StatelessWidget {
     } else {
       image_win = image2;
     }
+    savePicture();
   }
 
   void shareImageAndText() async {
@@ -57,9 +58,19 @@ class Result extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Text('勝者', style: TextStyle(fontSize: 50)),
+              child: Text('勝者',
+                  style: TextStyle(fontSize: 50, fontFamily: 'RocknRollOne')),
             ),
-            SizedBox(width: 360, child: Image.file(File(image_win.path))),
+            Stack(
+              children: [
+                SizedBox(width: 360, child: Image.file(File(image_win.path))),
+                // Image(
+                //   image: AssetImage('images/explosion.gif'),
+                //   fit: BoxFit.cover,
+                //   color: Color.fromRGBO(0, 0, 0, 0.9),
+                // ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
