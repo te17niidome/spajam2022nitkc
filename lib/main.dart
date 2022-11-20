@@ -19,6 +19,53 @@ void main() {
   runApp(MyApp());
 }
 
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: MyHomePage(title: 'esys_flutter_share'),
+//     );
+//   }
+// }
+
+// class MyHomePage extends StatefulWidget {
+//   MyHomePage( {super.key, required this.title});
+
+//   final String title;
+
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+
+// class _MyHomePageState extends State<MyHomePage> {
+//   late File _image;
+//   final picker = ImagePicker();
+
+//   // 画像の読み込み
+//   Future _getImage() async {
+//     //final pickedFile = await picker.getImage(source: ImageSource.camera);//カメラ
+//     final pickedFile = await picker.getImage(source: ImageSource.gallery);//アルバム
+
+//     if(pickedFile != null) {
+//       setState((){
+//         _image = File(pickedFile.path);
+//       });
+//     }
+//   }
+
+// 画像の保存
+// Future _saveImage() async {
+//   if(_image != null) {
+//     Uint8List _buffer = await _image.readAsBytes();
+//     final result = await ImageGallerySaver.saveImage(_buffer);
+//   }
+// }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
