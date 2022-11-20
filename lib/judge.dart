@@ -29,39 +29,13 @@ class Judge extends StatelessWidget {
       body: Column(
         children: [
           Container(
-<<<<<<< HEAD
-            width: 300,
-            height: 300,
-=======
             width: 1000,
             height: 2500,
->>>>>>> cf0cf4ab18b8b80d4e76e8f75f36b5396c907cc3
             decoration: const BoxDecoration(
                 image: DecorationImage(
               image: AssetImage('images/判定.png'),
               // fit: BoxFit.cover,
             )),
-<<<<<<< HEAD
-            child: Center(
-              child: SizedBox(
-                width: 220,
-                height: 250,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Result(),
-                        fullscreenDialog: true,
-                      ),
-                    );
-                  },
-                  child: const Text(''),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    elevation: 0,
-                    onPrimary: Colors.blue,
-=======
           ),
           SizedBox(
             width: 220,
@@ -73,29 +47,17 @@ class Judge extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => Result(),
                     fullscreenDialog: true,
->>>>>>> cf0cf4ab18b8b80d4e76e8f75f36b5396c907cc3
                   ),
                 ),
               ),
             ),
           ),
           Container(
-<<<<<<< HEAD
-            width: 510,
-            height: 400,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage('images/Videotogif(1).gif'),
-              // fit: BoxFit.cover,
-            )),
-          ),
-=======
             child: Image(
               image: AssetImage('images/Videotogif.gif'),
               fit: BoxFit.cover,
             ),
           )
->>>>>>> cf0cf4ab18b8b80d4e76e8f75f36b5396c907cc3
         ],
       ),
     );
