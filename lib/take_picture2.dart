@@ -9,11 +9,6 @@ import 'package:flutter_application_spajam2022/take_picture1.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
-
-
-
-
-
 class TakePicture2 extends StatelessWidget {
   // const TakePicture2({
   //   Key? key,
@@ -91,8 +86,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           // 写真を撮る
           image2 = await _controller.takePicture();
           // カメラロールに保存する
-          final Uint8List buffer = await image2.readAsBytes();
-          await ImageGallerySaver.saveImage(buffer, name: image2.name);
+          // final Uint8List buffer = await image2.readAsBytes();
+          // await ImageGallerySaver.saveImage(buffer, name: image2.name);
           // 表示用の画面に遷移
           await Navigator.of(context).push(
             MaterialPageRoute(

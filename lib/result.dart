@@ -25,6 +25,7 @@ class Result extends StatelessWidget {
     } else {
       image_win = image2;
     }
+    savePicture();
   }
 
   void shareImageAndText() async {

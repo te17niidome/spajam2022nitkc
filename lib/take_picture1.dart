@@ -110,8 +110,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           // 写真を撮る
           image1 = await _controller.takePicture();
           // カメラロールに保存する
-          final Uint8List buffer = await image1.readAsBytes();
-          await ImageGallerySaver.saveImage(buffer, name: image1.name);
+          // final Uint8List buffer = await image1.readAsBytes();
+          // await ImageGallerySaver.saveImage(buffer, name: image1.name);
           // 表示用の画面に遷移
           await Navigator.of(context).push(
             MaterialPageRoute(
