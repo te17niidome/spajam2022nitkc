@@ -18,6 +18,8 @@ class Judge extends StatelessWidget {
     FaceDetector player2 = FaceDetector();
     double image_emotion1 = player1.Face_Emotion(image1.path);
     double image_emotion2 = player2.Face_Emotion(image2.path);
+    print(image_emotion1);
+    print(image_emotion2);
     if (image_emotion1 > image_emotion2) {
       image_win = image1;
       image_lose = image2;
