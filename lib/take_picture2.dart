@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_spajam2022/face_emo.dart';
 import 'package:flutter_application_spajam2022/judge.dart';
 import 'package:flutter_application_spajam2022/take_picture1.dart';
 // import 'package:flutter_application_spajam2022/picture_ready_2.dart';

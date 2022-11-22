@@ -12,6 +12,7 @@ import 'dart:ui' as ui;
 // import 'package:flutter/services.dart';
 // import 'package:path_provider/path_provider.dart';
 import 'package:share_extend/share_extend.dart';
+import 'face_detec.dart';
 // import 'package:flutter_application_spajam2022/judge.dart';
 
 class Result extends StatelessWidget {
@@ -20,10 +21,16 @@ class Result extends StatelessWidget {
   void judgement() {
     var random = math.Random();
     double saikoro = random.nextDouble();
-    if (saikoro >= 0.5) {
+    FaceDetector player1 = FaceDetector();
+    FaceDetector player2 = FaceDetector();
+    double image_emotion1 = player1.Face_Emotion(image1.path);
+    double image_emotion2 = player2.Face_Emotion(image2.path);
+    if (image_emotion1 > image_emotion2) {
       image_win = image1;
+      image_lose = image2;
     } else {
       image_win = image2;
+      image_lose = image1;
     }
     savePicture();
   }

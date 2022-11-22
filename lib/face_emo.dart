@@ -1,130 +1,185 @@
-import 'dart:io';
-import 'dart:ui';
+// import 'dart:io';
+// import 'dart:ui';
 
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
+// import 'package:flutter/services.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_application_spajam2022/result.dart';
+// import 'package:http/http.dart';
+// import 'dart:convert';
 
-import 'package:path/path.dart';
+// import 'dart:io';
+// import 'dart:math' as math;
+// import 'dart:typed_data';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_application_spajam2022/home.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
+// import 'result.dart';
+// import 'package:flutter_application_spajam2022/take_picture1.dart';
+// import 'face_emo.dart';
 
-// リストを入れるModelクラス
-class Emotion {
-  String emo;
-  double num;
+// import 'package:path/path.dart';
 
-  Emotion(this.emo, this.num);
-}
+// // リストを入れるModelクラス
+// class Emotion {
+//   String emo;
+//   double num;
 
-class FaceEmo extends StatefulWidget {
-  const FaceEmo({super.key});
-  @override
-  State<FaceEmo> createState() => _FaceEmoState();
-}
+//   Emotion(this.emo, this.num);
+// }
 
-class _FaceEmoState extends State<FaceEmo> {
-  var emotion = {};
-  var URL =
-      'https://japaneast.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=false&returnFaceLandmarks=false&returnFaceAttributes=emotion&recognitionModel=recognition_01&returnRecognitionModel=false&detectionModel=detection_01&faceIdTimeToLive=86400';
+// class FaceEmo extends StatefulWidget {
+//   const FaceEmo({super.key});
+//   @override
+//   State<FaceEmo> createState() => _FaceEmoState();
+// }
 
-  Future<void> getData() async {
-    final uri = Uri.parse(URL);
-    Map<String, String> headers = {
-      'Ocp-Apim-Subscription-Key': '2f8e6c4ad71b4659b31043eb2cdb65df',
-      'Content-Type': 'application/octet-stream'
-    };
-    // アセットからデータをロードする
-    final byteData = await rootBundle.load('images/kao.jpeg');
-    Uint8List imageBytes = byteData.buffer
-        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
-// base64 code
-    var Post = await post(
-      uri,
-      headers: headers,
-      body: imageBytes,
-    );
+// class _FaceEmoState extends State<FaceEmo> {
+//   void judgement() {
+//     var random = math.Random();
+//     double saikoro = random.nextDouble();
+//     if (saikoro >= 0.5) {
+//       image_win = image1;
+//       image_lose = image2;
+//     } else {
+//       image_win = image2;
+//       image_lose = image1;
+//     }
+//   }
 
-    final jsonResponse = jsonDecode(Post.body);
-    print(jsonResponse);
-    final emotion2 = jsonResponse[0]['faceAttributes']['emotion'];
+//   var emotion = {};
+//   var URL =
+//       'https://japaneast.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=false&returnFaceLandmarks=false&returnFaceAttributes=emotion&recognitionModel=recognition_01&returnRecognitionModel=false&detectionModel=detection_01&faceIdTimeToLive=86400';
 
-    print(jsonResponse[0]);
+//   Future<void> getData() async {
+//     final uri = Uri.parse(URL);
+//     Map<String, String> headers = {
+//       'Ocp-Apim-Subscription-Key': '2f8e6c4ad71b4659b31043eb2cdb65df',
+//       'Content-Type': 'application/octet-stream'
+//     };
+//     // アセットからデータをロードする
+//     final byteData1 = await rootBundle.load('images/kao.jpeg');
+//     final byteData2 = await rootBundle.load('images/kao.jpeg');
+//     Uint8List imageBytes = byteData.buffer
+//         .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
+// // base64 code
+//     var Post = await post(
+//       uri,
+//       headers: headers,
+//       body: imageBytes,
+//     );
 
-    emotion = emotion2;
-    print(emotion);
-    print(Post.statusCode);
-    setState(() {});
-  }
+//     final jsonResponse = jsonDecode(Post.body);
+//     print(jsonResponse);
+//     final emotion2 = jsonResponse[0]['faceAttributes']['emotion'];
 
-  int _counter = 0;
+//     print(jsonResponse[0]);
 
-  void _incrementCounter() {
-    setState(() {
-      _counter = (_counter + 1) % emotion.length;
-    });
-  }
+//     emotion = emotion2;
+//     print(emotion);
+//     print(Post.statusCode);
+//     setState(() {});
+//   }
 
-  @override
-  void initState() {
-    super.initState();
+//   int _counter = 0;
 
-    getData();
-  }
+//   void _incrementCounter() {
+//     setState(() {
+//       _counter = (_counter + 1) % emotion.length;
+//     });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    double sum = 0;
-    // Map => List
-    final listJmp =
-        emotion.entries.map((e) => Emotion(e.key, e.value)).toList();
+//   @override
+//   void initState() {
+//     super.initState();
 
-    // Listから要素を取り出す
-    for (int i = 0; i < listJmp.length; i++) {
-      print(listJmp[i].emo);
-      print(listJmp[i].num);
-      sum = listJmp[1].num + listJmp[4].num * 0.5 + listJmp[7].num;
-      print(sum);
-      // sum = sum + listJmp[i].num;
-    }
+//     getData();
+//   }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('カス'),
-      ),
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            child: ListTile(
-              title: _textWidget(listJmp, index, _counter, 'emo'),
-              subtitle: _textWidget(listJmp, index, _counter, 'num'),
-            ),
-          );
-        },
-        itemCount: emotion.length,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     double sum = 0;
+//     // Map => List
+//     final listJmp =
+//         emotion.entries.map((e) => Emotion(e.key, e.value)).toList();
 
-Widget _textWidget(List list, int index, int counter, String key) {
-  if (key == 'emo') {
-    return Text(
-      list[index].emo,
-      style:
-          index == counter ? TextStyle(color: Colors.blue, fontSize: 28) : null,
-    );
-  }
-  if (key == 'num') {
-    return Text(
-      list[index].num.toString(),
-      style:
-          index == counter ? TextStyle(color: Colors.red, fontSize: 28) : null,
-    );
-  } else {
-    return Text('nothing');
-  }
-}
+//     // Listから要素を取り出す
+//     for (int i = 0; i < listJmp.length; i++) {
+//       print(listJmp[i].emo);
+//       print(listJmp[i].num);
+//       sum = listJmp[1].num + listJmp[4].num * 0.5 + listJmp[7].num;
+//       print(sum);
+//       // sum = sum + listJmp[i].num;
+//     }
+//     judgement();
+//     return Scaffold(
+//       backgroundColor: Color(0xffefedd7),
+//       appBar: AppBar(
+//         title: const Text('ホーム画面'),
+//       ),
+//       body: Column(
+//         children: [
+//           Stack(
+//             children: [
+//               Container(
+//                 width: 300,
+//                 height: 300,
+//                 decoration: const BoxDecoration(
+//                     image: DecorationImage(
+//                   image: AssetImage('images/判定.png'),
+//                   // fit: BoxFit.cover,
+//                 )),
+//               ),
+//               SizedBox(
+//                 width: 300,
+//                 height: 300,
+//                 child: ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(
+//                         builder: (context) => Result(),
+//                         fullscreenDialog: true,
+//                       ),
+//                     );
+//                   },
+//                   child: const Text(''),
+//                   style: ElevatedButton.styleFrom(
+//                     primary: Colors.transparent,
+//                     elevation: 0,
+//                     onPrimary: Colors.blue,
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//           Container(
+//             height: 300,
+//             child: Image(
+//               image: AssetImage('images/Videotogif.gif'),
+//               fit: BoxFit.cover,
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// Widget _textWidget(List list, int index, int counter, String key) {
+//   if (key == 'emo') {
+//     return Text(
+//       list[index].emo,
+//       style:
+//           index == counter ? TextStyle(color: Colors.blue, fontSize: 28) : null,
+//     );
+//   }
+//   if (key == 'num') {
+//     return Text(
+//       list[index].num.toString(),
+//       style:
+//           index == counter ? TextStyle(color: Colors.red, fontSize: 28) : null,
+//     );
+//   } else {
+//     return Text('nothing');
+//   }
+// }
