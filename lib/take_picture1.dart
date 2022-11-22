@@ -76,7 +76,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       // カメラを指定
       widget.camera,
       // 解像度を定義
-      ResolutionPreset.medium,
+      ResolutionPreset.ultraHigh,
     );
 
     // コントローラーを初期化
