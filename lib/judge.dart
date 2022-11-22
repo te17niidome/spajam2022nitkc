@@ -9,16 +9,26 @@ import 'package:flutter_application_spajam2022/take_picture1.dart';
 import 'face_emo.dart';
 import 'face_detec.dart';
 
-class Judge extends StatelessWidget {
-  // 判定部分
-  void judgement() {
+class Judge extends StatefulWidget {
+  const Judge({super.key});
+
+  @override
+  State<Judge> createState() => _JudgeState();
+}
+
+class _JudgeState extends State<Judge> {
+  var image_win;
+  void judgement() async {
     var random = math.Random();
     double saikoro = random.nextDouble();
-    FaceDetector player1 = FaceDetector();
-    FaceDetector player2 = FaceDetector();
-    double image_emotion1 = player1.Face_Emotion(image1.path);
-    double image_emotion2 = player2.Face_Emotion(image2.path);
+    FaceDetector player1 = await FaceDetector(image1.path);
+    FaceDetector player2 = await FaceDetector(image2.path);
+    await Future.delayed(Duration(seconds: 1));
+    double image_emotion1 = await player1.sum;
+    double image_emotion2 = await player2.sum;
+    print('helo');
     print(image_emotion1);
+    print('しね');
     print(image_emotion2);
     if (image_emotion1 > image_emotion2) {
       image_win = image1;
@@ -27,11 +37,13 @@ class Judge extends StatelessWidget {
       image_win = image2;
       image_lose = image1;
     }
+    savePicture();
   }
 
   @override
   Widget build(BuildContext context) {
     judgement();
+
     return Scaffold(
       backgroundColor: Color(0xffefedd7),
       appBar: AppBar(
@@ -58,7 +70,7 @@ class Judge extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Result(),
+                        builder: (context) => Result(image_win, image_lose),
                         fullscreenDialog: true,
                       ),
                     );

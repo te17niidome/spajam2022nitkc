@@ -30,7 +30,8 @@ Future<void> amain() async {
 
 Future<void> savePicture() async {
   final Uint8List buffer = await image_lose.readAsBytes();
-  await ImageGallerySaver.saveImage(buffer, name: image_lose.name);
+  await ImageGallerySaver.saveImage(buffer);
+  print('保存');
 }
 
 class TakePicture1 extends StatelessWidget {

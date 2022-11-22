@@ -18,13 +18,16 @@ class Emotion {
 
 class FaceDetector {
   String image_url = '';
-  Map<dynamic, dynamic> emotion = {};
-  late List<Emotion> listJmp;
+
   double sum = 0;
+  FaceDetector(String image) {
+    this.image_url = image;
+    getData();
+  }
   var URL =
       'https://japaneast.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=false&returnFaceLandmarks=false&returnFaceAttributes=emotion&recognitionModel=recognition_01&returnRecognitionModel=false&detectionModel=detection_01&faceIdTimeToLive=86400';
 
-  Future<void> getData() async {
+  Future<double> getData() async {
     final uri = Uri.parse(URL);
     Map<String, String> headers = {
       'Ocp-Apim-Subscription-Key': '2f8e6c4ad71b4659b31043eb2cdb65df',
@@ -41,51 +44,28 @@ class FaceDetector {
       body: imageBytes,
     );
 
-    final jsonResponse = jsonDecode(Post.body);
-    print(jsonResponse);
-    final emotion2 = jsonResponse[0]['faceAttributes']['emotion'];
+    var jsonResponse = jsonDecode(Post.body);
 
-    print(jsonResponse[0]);
-
-    emotion = emotion2;
-    print(emotion);
-    print(Post.statusCode);
+    var emotion = jsonResponse[0]['faceAttributes']['emotion'];
 
     // Map => List
-    listJmp = emotion.entries.map((e) => Emotion(e.key, e.value)).toList();
+    final listJmp =
+        emotion.entries.map((e) => Emotion(e.key, e.value)).toList();
 
     // Listから要素を取り出す
     for (int i = 0; i < listJmp.length; i++) {
-      print(listJmp[i].emo);
-      print(listJmp[i].num);
       sum = listJmp[1].num + listJmp[4].num * 0.5 + listJmp[7].num;
-      print(sum);
+      // print('hell');
+      // print(sum);
       // sum = sum + listJmp[i].num;
     }
-  }
-
-  Face_Emotion(String imageUrl) {
-    this.image_url = imageUrl;
-    getData();
     return sum;
   }
-}
 
-Widget _textWidget(List list, int index, int counter, String key) {
-  if (key == 'emo') {
-    return Text(
-      list[index].emo,
-      style:
-          index == counter ? TextStyle(color: Colors.blue, fontSize: 28) : null,
-    );
-  }
-  if (key == 'num') {
-    return Text(
-      list[index].num.toString(),
-      style:
-          index == counter ? TextStyle(color: Colors.red, fontSize: 28) : null,
-    );
-  } else {
-    return Text('nothing');
-  }
+  // double getSum() {
+  //   getData();
+  //   print('くそ');
+  //   print(sum);
+  //   return sum;
+  // }
 }

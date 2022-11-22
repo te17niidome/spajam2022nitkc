@@ -17,24 +17,11 @@ import 'face_detec.dart';
 
 class Result extends StatelessWidget {
   var image_win;
-  // 判定部分
-  void judgement() {
-    var random = math.Random();
-    double saikoro = random.nextDouble();
-    FaceDetector player1 = FaceDetector();
-    FaceDetector player2 = FaceDetector();
-    double image_emotion1 = player1.Face_Emotion(image1.path);
-    double image_emotion2 = player2.Face_Emotion(image2.path);
-    if (image_emotion1 > image_emotion2) {
-      image_win = image1;
-      image_lose = image2;
-    } else {
-      image_win = image2;
-      image_lose = image1;
-    }
-    savePicture();
+  var image_lose;
+  Result(XFile image_win, XFile image_lose) {
+    this.image_win = image_win;
+    this.image_lose = image_lose;
   }
-
   void shareImageAndText() async {
     //shareする際のテキスト
     try {
@@ -54,7 +41,6 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    judgement();
     return Scaffold(
       backgroundColor: Color(0xffefedd7),
       appBar: AppBar(
@@ -117,3 +103,135 @@ class Result extends StatelessWidget {
     );
   }
 }
+
+// class Result extends StatefulWidget {
+//   // var image;
+//   const Result({super.key});
+//   // Result({this.image});
+//   // judgement() {
+//   //   throw UnimplementedError();
+//   // }
+
+//   @override
+//   State<Result> createState() => _ResultState();
+// }
+
+// class _ResultState extends State<Result> {
+//   // var image_win = widget.image;
+//   var image_win;
+//   var image_dis;
+//   // void judgement() async {
+//   //   // var random = math.Random();
+//   //   // double saikoro = random.nextDouble();
+//   //   FaceDetector player1 = await FaceDetector(image1.path);
+//   //   FaceDetector player2 = await FaceDetector(image2.path);
+//   //   await Future.delayed(Duration(seconds: 5));
+//   //   double image_emotion1 = player1.sum;
+//   //   double image_emotion2 = player2.sum;
+//   //   if (image_emotion1 > image_emotion2) {
+//   //     image_win = image1;
+//   //     image_lose = image2;
+//   //   } else {
+//   //     image_win = image2;
+//   //     image_lose = image1;
+//   //   }
+//   //   image_dis = image_win;
+//   //   print('くそ');
+//   //   print(image_emotion1);
+//   //   print('はげ');
+//   //   print(image_emotion2);
+//   //   savePicture();
+//   // }
+
+//   void shareImageAndText() async {
+//     //shareする際のテキスト
+//     try {
+//       final ImagePicker _picker = ImagePicker();
+//       File? _file;
+//       final XFile? _image =
+//           await _picker.pickImage(source: ImageSource.gallery);
+//       _file = File(_image!.path);
+
+//       await ShareExtend.share(_file.path, "image");
+//       // await ShareExtend.share(path, "image");
+//       // applicationDocumentsFile.delete();
+//     } catch (error) {
+//       print(error);
+//     }
+//   }
+
+//   void initState() {
+//     super.initState();
+
+//     judgement();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     judgement();
+
+//     return Scaffold(
+//       backgroundColor: Color(0xffefedd7),
+//       appBar: AppBar(
+//         title: const Text('ホーム画面'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           children: [
+//             Padding(
+//               padding: const EdgeInsets.all(20.0),
+//               child: Text('勝者',
+//                   style: TextStyle(fontSize: 50, fontFamily: 'RocknRollOne')),
+//             ),
+//             image_win == null
+//                 ? Center(child: CircularProgressIndicator())
+//                 : Stack(
+//                     children: [
+//                       SizedBox(
+//                           width: 360, child: Image.file(File(image_win.path))),
+//                       // Image(
+//                       //   image: AssetImage('images/explosion.gif'),
+//                       //   fit: BoxFit.cover,
+//                       //   color: Color.fromRGBO(0, 0, 0, 0.9),
+//                       // ),
+//                     ],
+//                   ),
+//             Padding(
+//               padding: const EdgeInsets.all(20.0),
+//               child: Row(
+//                 children: [
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                           builder: (context) => Home(),
+//                           fullscreenDialog: true,
+//                         ),
+//                       );
+//                     },
+//                     child: const Text('ホームに戻る', style: TextStyle(fontSize: 20)),
+//                   ),
+//                   SizedBox(width: 10),
+//                   ElevatedButton(
+//                     onPressed: () {
+//                       shareImageAndText();
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                           builder: (context) => Home(),
+//                           fullscreenDialog: true,
+//                         ),
+//                       );
+//                     },
+//                     child: const Text('共有', style: TextStyle(fontSize: 20)),
+//                   ),
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
