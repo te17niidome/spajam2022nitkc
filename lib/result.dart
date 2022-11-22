@@ -58,7 +58,7 @@ class ResultState extends State<Result> with SingleTickerProviderStateMixin {
 
   Future<void> AnimeOn() async {
     // var random = math.Random();
-    int _time = 1700; // 5秒間待つ(爆発している時間)
+    int _time = 1600; // 5秒間待つ(爆発している時間)
     await Future.delayed(Duration(milliseconds: _time));
     _animeController.forward();
   }
@@ -71,7 +71,7 @@ class ResultState extends State<Result> with SingleTickerProviderStateMixin {
     AnimeOn();
     _animeController = AnimationController(
       vsync: this, // with SingleTickerProviderStateMixin を忘れずに
-      duration: Duration(milliseconds: 600), // ここに遷移する時間記入
+      duration: Duration(milliseconds: 1), // ここに遷移する時間記入
     );
   }
 
