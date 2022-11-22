@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Camera Example',
       theme: ThemeData(),
       home: TakePictureScreen(camera: camera),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

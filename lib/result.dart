@@ -15,8 +15,19 @@ import 'package:share_extend/share_extend.dart';
 import 'face_detec.dart';
 // import 'package:flutter_application_spajam2022/judge.dart';
 
-class Result extends StatelessWidget {
-  var image_win;
+class Result extends StatefulWidget {
+  // const Result({
+  //   Key? key
+
+  // })
+  ResultState createState() => ResultState();
+}
+
+class ResultState extends State<Result> with SingleTickerProviderStateMixin {
+  late Future<void> _initializeControllerFuture;
+  late AnimationController _animeController;
+  late Animation<double> animation;
+
   // 判定部分
   void judgement() {
     var random = math.Random();
@@ -52,6 +63,32 @@ class Result extends StatelessWidget {
     }
   }
 
+  Future<void> AnimeOn() async {
+    // var random = math.Random();
+    int _time = 1600; // 5秒間待つ(爆発している時間)
+    await Future.delayed(Duration(milliseconds: _time));
+    _animeController.forward();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // アニメーション
+    AnimeOn();
+    _animeController = AnimationController(
+      vsync: this, // with SingleTickerProviderStateMixin を忘れずに
+      duration: Duration(milliseconds: 1), // ここに遷移する時間記入
+    );
+  }
+
+  @override
+  void dispose() {
+    // ウィジェットが破棄されたら、コントローラーを破棄
+    _animeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     judgement();
@@ -71,11 +108,22 @@ class Result extends StatelessWidget {
             Stack(
               children: [
                 SizedBox(width: 360, child: Image.file(File(image_win.path))),
-                // Image(
-                //   image: AssetImage('images/explosion.gif'),
-                //   fit: BoxFit.cover,
-                //   color: Color.fromRGBO(0, 0, 0, 0.9),
-                // ),
+                PositionedTransition(
+                  rect: RelativeRectTween(
+                    begin: RelativeRect.fromLTRB(0, 0, 0, 0),
+                    end: RelativeRect.fromLTRB(1000, 1000, 1000, 1000),
+                  ).animate(CurvedAnimation(
+                    parent: _animeController,
+                    curve: Curves.easeIn,
+                  )),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Image(
+                      image: AssetImage('images/explosion.gif'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ],
             ),
             Padding(
