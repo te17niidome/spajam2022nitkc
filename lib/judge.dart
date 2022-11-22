@@ -18,6 +18,7 @@ class Judge extends StatefulWidget {
 
 class _JudgeState extends State<Judge> {
   var image_win;
+  var image_lose;
   void judgement() async {
     var random = math.Random();
     double saikoro = random.nextDouble();
@@ -37,7 +38,6 @@ class _JudgeState extends State<Judge> {
       image_win = image2;
       image_lose = image1;
     }
-    savePicture();
   }
 
   @override

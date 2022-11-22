@@ -15,13 +15,25 @@ import 'package:share_extend/share_extend.dart';
 import 'face_detec.dart';
 // import 'package:flutter_application_spajam2022/judge.dart';
 
-class Result extends StatelessWidget {
-  var image_win;
-  var image_lose;
-  Result(XFile image_win, XFile image_lose) {
-    this.image_win = image_win;
-    this.image_lose = image_lose;
-  }
+class Result extends StatefulWidget {
+  // const Result({
+  //   Key? key
+
+  // })
+  final image_win;
+  final image_lose;
+  Result(this.image_win, this.image_lose);
+  // Result({this.image_win, this.image_lose});
+  ResultState createState() => ResultState();
+}
+
+class ResultState extends State<Result> with SingleTickerProviderStateMixin {
+  late Future<void> _initializeControllerFuture;
+  late AnimationController _animeController;
+  late Animation<double> animation;
+  // var image_win;
+  // var image_lose;
+
   void shareImageAndText() async {
     //shareする際のテキスト
     try {
@@ -49,7 +61,8 @@ class Result extends StatelessWidget {
   @override
   void initState() {
     super.initState();
-
+    image_win = widget.image_win;
+    image_lose = widget.image_lose;
     // アニメーション
     AnimeOn();
     _animeController = AnimationController(
@@ -67,11 +80,12 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    savePicture();
     return Scaffold(
       backgroundColor: Color(0xffefedd7),
-      appBar: AppBar(
-        title: const Text('ホーム画面'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('ホーム画面'),
+      // ),
       body: Center(
         child: Column(
           children: [
@@ -82,7 +96,8 @@ class Result extends StatelessWidget {
             ),
             Stack(
               children: [
-                SizedBox(width: 360, child: Image.file(File(image_win.path))),
+                SizedBox(
+                    width: 360, child: Image.file(File(widget.image_win.path))),
                 PositionedTransition(
                   rect: RelativeRectTween(
                     begin: RelativeRect.fromLTRB(0, 0, 0, 0),
