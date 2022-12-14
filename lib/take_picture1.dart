@@ -15,6 +15,9 @@ var image1;
 var cameras;
 var camera;
 
+var image_win;
+var image_lose;
+
 Future<void> amain() async {
   // main 関数内で非同期処理を呼び出すための設定
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +26,12 @@ Future<void> amain() async {
   // 利用可能なカメラのリストから特定のカメラを取得
   camera = cameras.first;
   // runApp(TakePicture2(camera: firstCamera2));
+}
+
+Future<void> savePicture() async {
+  final Uint8List buffer = await image_lose.readAsBytes();
+  await ImageGallerySaver.saveImage(buffer);
+  print('保存');
 }
 
 class TakePicture1 extends StatelessWidget {
@@ -68,7 +77,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       // カメラを指定
       widget.camera,
       // 解像度を定義
-      ResolutionPreset.medium,
+      ResolutionPreset.ultraHigh,
     );
 
     // コントローラーを初期化
@@ -102,8 +111,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           // 写真を撮る
           image1 = await _controller.takePicture();
           // カメラロールに保存する
-          final Uint8List buffer = await image1.readAsBytes();
-          await ImageGallerySaver.saveImage(buffer, name: image1.name);
+          // final Uint8List buffer = await image1.readAsBytes();
+          // await ImageGallerySaver.saveImage(buffer, name: image1.name);
           // 表示用の画面に遷移
           await Navigator.of(context).push(
             MaterialPageRoute(
